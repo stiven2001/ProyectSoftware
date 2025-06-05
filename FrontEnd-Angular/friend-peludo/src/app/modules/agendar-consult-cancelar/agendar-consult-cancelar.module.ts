@@ -6,13 +6,15 @@ import { AgendarConsultCancelarComponent } from './agendar-consult-cancelar.comp
 import { CancelarComponent } from './components/cancelar/cancelar.component';
 import { ConsultarComponent } from './components/consultar/consultar.component';
 import { AgendarComponent } from './components/Agendar/agendar.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
   declarations: [AgendarConsultCancelarComponent, AgendarComponent, CancelarComponent, ConsultarComponent],
   imports: [
     CommonModule,
-    AgendarConsultCancelarRoutingModule
+    AgendarConsultCancelarRoutingModule,
+    SharedModule
   ]
 })
 export class AgendarConsultCancelarModule { }

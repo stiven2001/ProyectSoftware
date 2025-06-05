@@ -1,77 +1,70 @@
-<p-card class="form-container">
-  <h2 class="titulo">Ingresa tus datos para agendar tu cita</h2>
+<div class="contenido-cita">
+  <div class="formulario">
+    <h3 class="titulo">Ingresa tus datos para agendar tu cita</h3>
 
-  <form [formGroup]="formCita" class="p-fluid form-grid">
-    
-    <div class="p-field">
-      <label for="tipoDocumento">Tipo de documento</label>
-      <p-dropdown 
-        id="tipoDocumento"
-        [options]="tiposDocumento"
-        optionLabel="label"
-        formControlName="tipoDocumento"
-        placeholder="Selecciona una opción">
-      </p-dropdown>
-    </div>
+    <form [formGroup]="formCita" class="p-fluid grid-formulario">
+      <div class="p-field">
+        <label for="tipoDocumento">Tipo de documento</label>
+        <p-dropdown id="tipoDocumento" [options]="tiposDocumento" formControlName="tipoDocumento" placeholder="Selecciona una opción"></p-dropdown>
+      </div>
 
-    <div class="p-field">
-      <label for="documento">Documento</label>
-      <input id="documento" type="text" pInputText formControlName="documento" placeholder="Sin puntos" />
-    </div>
+      <div class="p-field">
+        <label for="documento">Documento</label>
+        <input id="documento" type="text" pInputText formControlName="documento" placeholder="Ingresa el número de documento sin puntos" />
+      </div>
 
-    <div class="p-field">
-      <label for="nombres">Nombres y apellidos</label>
-      <input id="nombres" type="text" pInputText formControlName="nombres" />
-    </div>
+      <div class="p-field">
+        <label for="nombres">Nombres y apellidos</label>
+        <input id="nombres" type="text" pInputText formControlName="nombres" placeholder="Ingresa tu nombre completo" />
+      </div>
 
-    <div class="p-field">
-      <label for="nombreMascota">Nombre Mascota</label>
-      <input id="nombreMascota" type="text" pInputText formControlName="nombreMascota" />
-    </div>
+      <div class="p-field">
+        <label for="nombreMascota">Nombre Mascota</label>
+        <input id="nombreMascota" type="text" pInputText formControlName="nombreMascota" placeholder="Ingresa el nombre de tu mascota" />
+      </div>
 
-    <div class="p-field">
-      <label for="edadMascota">Edad Mascota</label>
-      <input id="edadMascota" type="number" pInputText formControlName="edadMascota" />
-    </div>
+      <div class="p-field">
+        <label for="edadMascota">Edad Mascota</label>
+        <input id="edadMascota" type="number" pInputText formControlName="edadMascota" placeholder="Ingresa la edad de tu mascota" />
+      </div>
 
-    <div class="p-field">
-      <label for="telefono">Número de teléfono</label>
-      <input id="telefono" type="text" pInputText formControlName="telefono" />
-    </div>
+      <div class="p-field">
+        <label for="telefono">Número de teléfono</label>
+        <input id="telefono" type="text" pInputText formControlName="telefono" placeholder="Ingresa tu número de celular" />
+      </div>
 
-    <div class="p-field">
-      <label for="correo">Correo electrónico</label>
-      <input id="correo" type="email" pInputText formControlName="correo" />
-    </div>
+      <div class="p-field">
+        <label for="correo">Correo electrónico</label>
+        <input id="correo" type="email" pInputText formControlName="correo" placeholder="Ingresa tu correo electrónico" />
+      </div>
 
-    <div class="p-field">
-      <label for="fecha">Fecha de la cita</label>
-      <p-calendar id="fecha" formControlName="fecha" dateFormat="dd/mm/yy" showIcon></p-calendar>
-    </div>
+      <div class="p-field">
+        <label for="fecha">Fecha de la cita</label>
+        <p-calendar id="fecha" formControlName="fecha" dateFormat="dd/mm/yy" showIcon></p-calendar>
+      </div>
 
-    <div class="p-field">
-      <label for="hora">Hora de la cita</label>
-      <p-inputMask mask="99:99" formControlName="hora" placeholder="00:00"></p-inputMask>
-    </div>
+      <div class="p-field">
+        <label for="hora">Hora de la cita</label>
+        <p-dropdown id="hora" [options]="horas" formControlName="hora" placeholder="Selecciona la hora de tu cita"></p-dropdown>
+      </div>
 
-    <div class="p-field">
-      <label for="servicio">Selecciona el servicio</label>
-      <p-dropdown 
-        id="servicio"
-        [options]="servicios"
-        optionLabel="label"
-        formControlName="servicio"
-        placeholder="Selecciona una opción">
-      </p-dropdown>
-    </div>
+      <div class="p-field">
+        <label for="servicio">Selecciona el servicio</label>
+        <p-dropdown id="servicio" [options]="servicios" formControlName="servicio" placeholder="Selecciona una opción"></p-dropdown>
+      </div>
 
-    <div class="p-field p-d-flex p-jc-between p-mt-4">
-      <button pButton type="submit" label="AGENDAR" class="p-button-danger"></button>
-      <button pButton type="button" label="VOLVER" class="p-button-secondary"></button>
-    </div>
-  </form>
+      <div class="botones">
+        <button pButton type="submit" label="AGENDAR" class="p-button-danger"></button>
+        <button pButton label="VOLVER" icon="pi pi-angle-left" class="p-button-text p-button-secondary"></button>
+      </div>
+    </form>
 
-  <p class="aviso">
-    * Consultar el aviso privacidad tratamiento de datos personales, en: https://secretaria general.com
-  </p>
-</p-card>
+    <p class="aviso">
+      • Consultar el aviso privacidad tratamiento de datos personales, en: https://secretaria general.com
+    </p>
+  </div>
+
+  <div class="imagen-derecha">
+    <img src="assets/perro-veterinaria.jpg" alt="Veterinaria" />
+  </div>
+</div>

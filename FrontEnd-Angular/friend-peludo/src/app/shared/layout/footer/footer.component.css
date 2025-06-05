@@ -1,0 +1,14 @@
+body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #ffffff;
+      text-align: center;
+    }
+
+    footer {
+      margin-top: 25%;
+      background-color: #1e4db7;
+      padding: 15px;
+      color: white;
+      text-align: center;
+    }

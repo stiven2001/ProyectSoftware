@@ -1,0 +1,53 @@
+.contenido-cita {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding: 2rem;
+  max-width: 1280px;
+  margin: auto;
+  background: white;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+}
+
+.formulario {
+  flex: 1;
+  min-width: 320px;
+}
+
+.titulo {
+  text-align: left;
+  color: #003366;
+  margin-bottom: 1rem;
+}
+
+.grid-formulario {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.p-field label {
+  font-weight: bold;
+}
+
+.botones {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  grid-column: span 2;
+}
+
+.aviso {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.imagen-derecha img {
+  max-width: 400px;
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+}
