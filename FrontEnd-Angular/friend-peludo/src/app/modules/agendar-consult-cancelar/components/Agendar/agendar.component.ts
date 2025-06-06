@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-agendar',
@@ -19,6 +20,12 @@ export class AgendarComponent implements OnInit {
     { label: 'Tarjeta de identidad', value: 'TI' },
   ];
 
+  horasDisponibles = [
+    { label: '08:00 Am', value: 'CC' },
+    { label: '10:00 Am', value: 'CE' },
+    { label: '12:00 PM', value: 'TI' },
+  ]
+
   servicios = [
     { label: 'Vacunación', value: 'vacunacion' },
     { label: 'Consulta general', value: 'consulta' },
@@ -26,19 +33,25 @@ export class AgendarComponent implements OnInit {
     { label: 'Urgencias', value: 'urgencias' },
   ];
 
-  constructor(private fb: FormBuilder) {
-    this.formCita = this.fb.group({
-      tipoDocumento: [''],
-      documento: [''],
-      nombres: [''],
-      nombreMascota: [''],
-      edadMascota: [''],
-      telefono: [''],
-      correo: [''],
-      fecha: [''],
-      hora: [''],
-      servicio: ['']
+  constructor(private fb: FormBuilder, private router: Router) {
+   this.formCita = this.fb.group({
+  tipoDocumento: [null, Validators.required],
+  documento: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
+  nombres: ['', Validators.required],
+  nombreMascota: ['', Validators.required],
+  edadMascota: [null, [Validators.required, Validators.min(0)]],
+  telefono: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
+  correo: ['', [Validators.required, Validators.email]],
+  fecha: [null, Validators.required],
+  hora: [null, Validators.required],
+  servicio: [null, Validators.required],
+
     });
   }
+
+  volver(){
+    this.router.navigate(['/'])
+  }
+  
 
 }

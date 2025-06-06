@@ -1,0 +1,70 @@
+.agendamiento-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 2rem;
+  flex-wrap: wrap;
+}
+
+.formulario {
+  flex: 1 1 60%;
+  max-width: 700px;
+}
+
+.formulario h2 {
+  font-size: 2rem;
+  color: #004080;
+  margin-bottom: 1.5rem;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  flex: 1 1 48%;
+  display: flex;
+  flex-direction: column;
+  width: 100% !important;
+}
+
+.form-group.full-width {
+  flex: 1 1 100%;
+}
+
+.form-group label {
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+  color: #333;
+}
+
+input, p-dropdown, p-calendar {
+  width: 100%;
+}
+
+.acciones {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.imagen {
+  flex: 1 1 35%;
+  text-align: center;
+}
+
+.imagen img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 8px;
+}
+
+.aviso {
+  font-size: 0.85rem;
+  margin-top: 1rem;
+  color: #444;
+}

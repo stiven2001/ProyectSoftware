@@ -1,1 +1,30 @@
-<p>consultar works!</p>
+<div class="agendamiento-container">
+  <div class="formulario">
+    <h2>Ingresa tus datos para consultar tu cita</h2>
+
+    <form [formGroup]="formCita" (ngSubmit)="onSubmit()" novalidate>
+      <div class="row">
+        <div class="form-group">
+          <label for="tipoDocumento">Tipo de documento</label>
+          <p-dropdown [options]="tiposDocumento" formControlName="tipoDocumento" placeholder="Selecciona una opción"></p-dropdown>
+        </div>
+
+        <div class="form-group">
+          <label for="documento">Documento</label>
+          <input pInputText type="text" formControlName="documento" placeholder="Ingresa el número de documento sin puntos" />
+        </div>
+      </div>
+
+      <div class="row acciones">
+          <button pButton type="button" label="VOLVER" icon="pi pi-angle-left" class="p-button-text" (click)="volver()"></button>
+        <button pButton type="submit" label="CONSULTAR" class="p-button-danger"></button>
+      </div>
+    </form>
+  </div>
+
+  <div class="imagen">
+    <img src="assets/img/veterinaria_dog.png" alt="Veterinaria con perro" />
+    <p class="aviso">• Consultar el aviso privacidad tratamiento de datos personales, en: https://secretaria general.com</p>
+  </div>
+</div>
+
