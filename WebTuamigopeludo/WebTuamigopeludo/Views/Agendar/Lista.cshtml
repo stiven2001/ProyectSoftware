@@ -1,0 +1,75 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<WebTuamigopeludo.Models.Citas>;
+<div class="row">
+
+    <div class="col-sm-8 offset-sm-2">
+        <h2> Lista de Citas</h2>
+        <a asp-controller="Agendar" asp-action="Agendar" class="btn btn-success mb-3">Nueva Agenda</a>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Id Cita</th>
+                    <th>Tipo Documento</th>
+                    <th> Documento</th>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>Telefono</th>
+                    <th>Correo</th>
+                    <th>Nombre de la mascota</th>
+                    <th>Edad</th>
+                    <th>Especie</th>
+                    <th>Raza</th>
+                    <th>Servicio</th>
+                    <th>Fecha</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>@item.IdCita </td>
+                        <td>@item.TipoDocumento </td>
+                        <td>@item.Documento </td>
+                        <td>@item.Nombre </td>
+                        <td>@item.Apellidos </td>
+                        <td>@item.Telefono </td>
+                        <td>@item.Correo </td>
+                        <td>@item.NombreMascota</td>
+                        <td>@item.Edad </td>
+                        <td>@item.Especie </td>
+                        <td>@item.Raza </td>
+                        <td>@item.Servicio </td>
+                        <td>@item.Fecha.ToString("dd/MM/yyyy")</td>
+                        
+
+                       
+
+
+
+                    </tr>
+
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function confirmar (){
+            return confirm("Esta seguro de eliminar el empleado?")
+        }
+
+    </script>
+    }
+
