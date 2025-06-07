@@ -15,7 +15,7 @@
         public required string Raza { get; set; }
         public required string Servicio { get; set; }
         public required DateTime Fecha { get; set; }
-        public required int Estado { get; set; }
+        public  int Estado { get; set; }
 
 
 

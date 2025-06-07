@@ -11,6 +11,17 @@ builder.Services.AddDbContext<AppDBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("CadenaSQL"));
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200") // Cambia si tu Angular usa otro puerto
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
+
 
 var app = builder.Build();
 
@@ -22,6 +33,8 @@ if (!app.Environment.IsDevelopment())
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseCors("AllowAll");
 
 app.UseAuthorization();
 

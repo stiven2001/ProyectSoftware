@@ -12,8 +12,8 @@ using WebTuamigopeludo.Data;
 namespace WebTuamigopeludo.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20250606155923_quinta Migracion")]
-    partial class quintaMigracion
+    [Migration("20250606204453_Primera Migracion")]
+    partial class PrimeraMigracion
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -128,13 +128,15 @@ namespace WebTuamigopeludo.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdServicio"));
 
-                    b.Property<DateTime>("Descripcion")
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("datetime2");
+                        .HasColumnType("nvarchar(50)");
 
-                    b.Property<DateTime>("Nombre")
+                    b.Property<string>("Nombre")
+                        .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("datetime2");
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("IdServicio");
 
