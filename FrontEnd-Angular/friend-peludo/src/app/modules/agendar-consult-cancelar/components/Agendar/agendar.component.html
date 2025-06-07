@@ -1,5 +1,5 @@
 <div class="agendamiento-container">
-  <div class="formulario">
+  <div class="formulario" *ngIf="!mostrarDetalleCita">
     <h2>Ingresa tus datos para agendar tu cita</h2>
 
     <form [formGroup]="formCita" (ngSubmit)="onSubmit()" novalidate>
@@ -16,9 +16,14 @@
       </div>
 
       <div class="row">
-        <div class="form-group full-width">
-          <label for="nombres">Nombres y apellidos</label>
-          <input pInputText type="text" formControlName="nombres" placeholder="Ingresa tu nombre completo" />
+        <div class="form-group">
+          <label for="nombre">Nombres</label>
+          <input pInputText type="text" formControlName="nombre" placeholder="Ingresa tu nombre completo" />
+        </div>
+
+        <div class="form-group">
+          <label for="apellidos">apellidos</label>
+          <input pInputText type="text" formControlName="apellidos" placeholder="Ingresa tu apellidos completo" />
         </div>
       </div>
 
@@ -29,15 +34,15 @@
         </div>
 
         <div class="form-group">
-          <label for="edadMascota">Edad Mascota</label>
-          <input pInputText type="number" formControlName="edadMascota" placeholder="Ingresa la edad de tu mascota" />
+          <label for="edad">Edad Mascota</label>
+          <input pInputText type="number" formControlName="edad" placeholder="Ingresa la edad de tu mascota" />
         </div>
       </div>
 
       <div class="row">
         <div class="form-group">
           <label for="telefono">Número de teléfono</label>
-          <input pInputText type="tel" formControlName="telefono" placeholder="Ingresa tu número de celular" />
+          <input pInputText type="text" formControlName="telefono" placeholder="Ingresa tu número de celular" />
         </div>
 
         <div class="form-group">
@@ -53,10 +58,15 @@
         </div>
 
         <div class="form-group">
-          <label for="hora">Selecciona la hora de tu cita</label>
-          <p-dropdown [options]="horasDisponibles" formControlName="horasDisponibles" placeholder="Selecciona"></p-dropdown>
+          <label for="correo">Raza de tu mascota</label>
+          <input pInputText type="text" formControlName="raza" placeholder="Ingresa la raza de tu mascota" />
         </div>
       </div>
+
+       <div class="form-group">
+          <label for="especie"></label>
+          <input pInputText type="text" formControlName="especie" placeholder="Ingresa la especie de tu mascota" />
+        </div>
 
       <div class="row">
         <div class="form-group full-width">
@@ -66,14 +76,32 @@
       </div>
 
       <div class="row acciones">
-        <button pButton type="submit" label="AGENDAR" class="p-button-danger"></button>
+        <button pButton type="submit" class="p-button-danger" label="AGENDAR"></button>
         <button pButton type="button" label="VOLVER" icon="pi pi-angle-left" class="p-button-text" (click)="volver()"></button>
       </div>
     </form>
   </div>
 
+  <!-- DETALLE DE CITA -->
+  <div *ngIf="mostrarDetalleCita" class="detalle-cita">
+    <h2>¡Tu cita se ha agendado!</h2>
+    <div class="detalle-info">
+      <h2>Tus citas programadas son:</h2>
+      <p><strong>Código de la cita:</strong> {{ citaAgendada.idCita || 'N/A' }}</p>
+      <p><strong>Documento:</strong> {{ citaAgendada.documento }}</p>
+      <p><strong>Fecha de la cita:</strong> {{ citaAgendada.fecha | date: 'fullDate' }}</p>
+      <p><strong>Hora de la cita:</strong> {{ citaAgendada.fecha | date: 'shortTime' }}</p>
+      <p><strong>Lugar de la cita:</strong> Call40a #52c-22</p>
+    </div>
+
+    <div class="acciones">
+      <button pButton label="AGENDAR OTRA CITA" class="p-button-outlined p-button-danger" (click)="reiniciarFormulario()"></button>
+      <button pButton label="ACEPTAR Y VOLVER AL INICIO" class="p-button-danger" (click)="volver()"></button>
+    </div>
+  </div>
+
   <div class="imagen">
-    <img src="assets/img/veterinaria_dog.png" alt="Veterinaria con perro" />
+    <img src="assets/ImgProyect/perroydocts.svg" alt="Veterinaria con perro" />
     <p class="aviso">• Consultar el aviso privacidad tratamiento de datos personales, en: https://secretaria general.com</p>
   </div>
 </div>

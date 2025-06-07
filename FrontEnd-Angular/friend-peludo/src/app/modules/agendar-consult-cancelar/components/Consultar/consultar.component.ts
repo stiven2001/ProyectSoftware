@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ServicesagendarService } from '../../services/servicesagendar.service';
+import { Cita } from './models/responseConsult';
 
 @Component({
   selector: 'app-consultar',
@@ -10,8 +12,14 @@ import { Router } from '@angular/router';
 export class ConsultarComponent implements OnInit {
 
    formCita: FormGroup;
+  citas: Cita[] = [];
+  mensaje: string = '';
+  mostrarDetalleCita: boolean = false;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+   mostrarPopup: boolean = false;
+  mensajePopup: string = '';
+
+  constructor(private fb: FormBuilder, private router: Router, private agendarService: ServicesagendarService) {
      this.formCita = this.fb.group({
     tipoDocumento: [null, Validators.required],
     documento: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
@@ -31,5 +39,37 @@ export class ConsultarComponent implements OnInit {
   volver(){
     this.router.navigate(['/'])
   }
+  
+    consultar(): void {
+  const tipo = this.formCita.get('tipoDocumento').value;
+  const documento = this.formCita.get('documento').value;
+
+  if (!tipo || !documento) {
+    this.mensajePopup = 'Por favor completa todos los campos.';
+    this.mostrarPopup = true;
+    return;
+  }
+
+  this.agendarService.consultarCita(tipo, documento).subscribe({
+    next: (respuesta) => {
+      if (respuesta && respuesta.length > 0) {
+        this.citas = respuesta;
+        this.mostrarDetalleCita = true;
+      } else {
+        this.mensajePopup = 'No se encontraron citas para ese documento.';
+        this.mostrarPopup = true;
+      }
+    },
+    error: (err) => {
+      this.mensajePopup = 'No se encontraron citas para ese documento..';
+      this.mostrarPopup = true;
+    }
+  });
+}
+
+cerrarPopup(): void {
+  this.mostrarPopup = false;
+}
+
 
 }

@@ -1,8 +1,8 @@
 <div class="agendamiento-container">
-  <div class="formulario">
+  <div class="formulario" *ngIf="!mostrarDetalleCita">
     <h2>Ingresa tus datos para consultar tu cita</h2>
 
-    <form [formGroup]="formCita" (ngSubmit)="onSubmit()" novalidate>
+    <form [formGroup]="formCita" novalidate>
       <div class="row">
         <div class="form-group">
           <label for="tipoDocumento">Tipo de documento</label>
@@ -17,14 +17,48 @@
 
       <div class="row acciones">
           <button pButton type="button" label="VOLVER" icon="pi pi-angle-left" class="p-button-text" (click)="volver()"></button>
-        <button pButton type="submit" label="CONSULTAR" class="p-button-danger"></button>
+        <button pButton type="button" label="CONSULTAR" class="p-button-danger" (click)="consultar()"></button>
       </div>
     </form>
   </div>
 
+   <!-- DETALLE DE CITA -->
+  <div *ngIf="mostrarDetalleCita" class="detalle-cita">
+    <h2>¡Tu cita se ha agendado!</h2>
+    <div class="detalle-info"  *ngFor="let cita of citas">
+      <h2>Tus citas programadas son:</h2>
+      <p><strong>Código de la cita:</strong> {{ citas[0]?.idCita || 'N/A' }}</p>
+      <p><strong>Documento:</strong> {{ citas[0]?.documento }}</p>
+      <p><strong>Fecha de la cita:</strong> {{ citas[0]?.fecha | date: 'fullDate' }}</p>
+      <p><strong>Hora de la cita:</strong> {{ citas[0]?.fecha | date: 'shortTime' }}</p>
+
+      <p><strong>Lugar de la cita:</strong> Call40a #52c-22</p>
+    </div>
+
+    <div class="acciones">
+      <!-- <button pButton label="AGENDAR OTRA CITA" class="p-button-outlined p-button-danger" (click)="reiniciarFormulario()"></button> -->
+      <button pButton label="ACEPTAR Y VOLVER AL INICIO" class="p-button-danger" (click)="volver()"></button>
+    </div>
+  </div>
+
   <div class="imagen">
-    <img src="assets/img/veterinaria_dog.png" alt="Veterinaria con perro" />
+    <img src="assets/ImgProyect/catDogVete.svg" alt="Veterinaria con perro" />
     <p class="aviso">• Consultar el aviso privacidad tratamiento de datos personales, en: https://secretaria general.com</p>
   </div>
 </div>
+
+<p-dialog header="¡Resultado de tu Cancelación!"
+          [(visible)]="mostrarPopup"
+          [modal]="true"
+          [closable]="false"
+          [style]="{width: '30vw'}"
+          [contentStyle]="{'text-align': 'center'}">
+
+  <p>{{ mensajePopup }}</p>
+
+  <button pButton label="ACEPTAR" class="p-button-danger mt-3" (click)="cerrarPopup()">
+  </button>
+
+</p-dialog>
+
 

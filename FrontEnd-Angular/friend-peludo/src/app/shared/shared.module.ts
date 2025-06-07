@@ -12,6 +12,9 @@ import { CardModule } from 'primeng/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
+import { HttpClientModule } from '@angular/common/http';
+import { DialogModule } from 'primeng/dialog';
+
 
 /* Compartimientos de librerias */
 
@@ -27,7 +30,10 @@ import { FooterComponent } from './layout/footer/footer.component';
     InputMaskModule,
     ButtonModule,
     CardModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    DialogModule
+    
     
   ],
   exports: [
@@ -38,7 +44,9 @@ import { FooterComponent } from './layout/footer/footer.component';
     InputMaskModule,
     ButtonModule,
     CardModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+    HttpClientModule,
+    DialogModule
+    ]
 })
 export class SharedModule { }

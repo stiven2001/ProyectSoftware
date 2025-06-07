@@ -1,30 +1,63 @@
 <div class="agendamiento-container">
-  <div class="formulario">
+  <div class="formulario" *ngIf="!mostrarDetalleCita">
     <h2>Ingresa tus datos para cancelar tu cita</h2>
 
-    <form [formGroup]="formCita" (ngSubmit)="onSubmit()" novalidate>
+    <form [formGroup]="formCita" novalidate>
       <div class="row">
         <div class="form-group">
           <label for="tipoDocumento">Tipo de documento</label>
-          <p-dropdown [options]="tiposDocumento" formControlName="tipoDocumento" placeholder="Selecciona una opción"></p-dropdown>
+          <p-dropdown [options]="tiposDocumento" formControlName="tipoDocumento"
+            placeholder="Selecciona una opción"></p-dropdown>
         </div>
 
         <div class="form-group">
           <label for="documento">Documento</label>
-          <input pInputText type="text" formControlName="documento" placeholder="Ingresa el número de documento sin puntos" />
+          <input pInputText type="text" formControlName="documento"
+            placeholder="Ingresa el número de documento sin puntos" />
         </div>
       </div>
 
       <div class="row acciones">
-          <button pButton type="button" label="VOLVER" icon="pi pi-angle-left" class="p-button-text" (click)="volver()"></button>
-        <button pButton type="submit" label="CONSULTAR" class="p-button-danger"></button>
+        <button pButton type="button" label="VOLVER" icon="pi pi-angle-left" class="p-button-text"
+          (click)="volver()"></button>
+        <button pButton type="button" label="CONSULTAR" class="p-button-danger" (click)="consultar()"></button>
       </div>
     </form>
   </div>
 
+  <div class="detalle-info" *ngFor="let cita of citas">
+    <h2>Tu cita programada:</h2>
+    <p><strong>Código de la cita:</strong> {{ cita.idCita }}</p>
+    <p><strong>Documento:</strong> {{ cita.documento }}</p>
+    <p><strong>Fecha de la cita:</strong> {{ cita.fecha | date: 'fullDate' }}</p>
+    <p><strong>Hora de la cita:</strong> {{ cita.fecha | date: 'shortTime' }}</p>
+    <p><strong>Lugar de la cita:</strong> Call40a #52c-22</p>
+
+    <div class="row acciones">
+
+      <button pButton label="CANCELAR ESTA CITA" class="p-button-outlined p-button-warning"
+        (click)="cancelarCita(cita.idCita)">
+      </button>
+    </div>
+    <button pButton type="button" label="VOLVER" icon="pi pi-angle-left" class="p-button-text"
+      (click)="volver()"></button>
+
+  </div>
+
+
   <div class="imagen">
-    <img src="assets/img/veterinaria_dog.png" alt="Veterinaria con perro" />
-    <p class="aviso">• Consultar el aviso privacidad tratamiento de datos personales, en: https://secretaria general.com</p>
+    <img src="assets/ImgProyect/catyvete.svg" alt="Veterinaria con perro" />
+    <p class="aviso">• Consultar el aviso privacidad tratamiento de datos personales, en: https://secretaria general.com
+    </p>
   </div>
 </div>
+
+<p-dialog header="¡Resultado de tu Cancelación!" [(visible)]="mostrarPopup" [modal]="true" [closable]="false"
+  [style]="{width: '30vw'}" [contentStyle]="{'text-align': 'center'}">
+
+  <p>{{ mensajePopup }}</p>
+
+  <button pButton label="ACEPTAR" class="p-button-danger mt-3" (click)="cerrarPopup()">
+  </button>
+</p-dialog>
 
